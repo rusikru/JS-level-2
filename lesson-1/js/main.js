@@ -33,7 +33,7 @@ for (i = 0; i <= productItem.length - 1; i++) {
     price[i].style.margin = "20px 0px 20px 30px";
 
     let btn = document.querySelectorAll(".buy-btn"); // есть ли возможность, аписать в более кратком виде все что ниже (стили)?
-    btn[i].style.width = "260px";
+    btn[i].style.width = "250px";
     btn[i].style.heigh = "40px";
     btn[i].style.textDecoration = "none";
     btn[i].style.backgroundColor = "#FFF5EE";
