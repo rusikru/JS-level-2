@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+	<form action="#" class = "form">
+		<input type="text" id="input-1" class="input-name" name="name" placeholder = "Иванов Иван">
+		<input type="tel" id="input-2" name="phone" class="input-phone" placeholder ="+7(000)000-0000">
+		<input type="text" id="input-3" name="mail" class="input-mail" placeholder = "text@mail.ru">
+		<input type="text-area" id="input-4" name="area" class="input-area" placeholder = "Комметарий" width = "200px" height="200px">
+		<input type="submit" name="Отправить" class="submit-form">
+	</form>
+	 <script>
+	 	// 1 и 2 задания
+
+	 	let str = `One: 'Hi Mary.'\nTwo: 'Oh, hi.'\nOne: 'How are you doing?'\nTwo: 'I'm doing alright. How about you?'\n
+	 	One: 'Not too bad. The weather is great isn't it?'\nTwo: 'Yes. It's absolutely beautiful today.'\nOne: 'I wish it was like this more frequently.'\n
+	 	Two: 'Me too.'\nOne: 'So where are you going now?'\nTwo: 'I'm going to meet a friend of mine at the department store.'\n
+	 	One: 'Going to do a little shopping?'\nTwo: 'Yeah, I have to buy some presents for my parents.'\nOne: 'What's the occasion?'\n
+	 	Two: 'It's their anniversary.'\nOne: 'That's great. Well, you better get going. You don't want to be late.'\n
+	 	Two: 'I'll see you next time.'\nOne: 'Sure. Bye.'`;
+	 	let regexp = new RegExp(/[a-z]+'[a-z]+/ig);
+	 	str = str.replace(/'/g,'"');
+	 	console.log(str);
+	 	let str2 = str.match(/[a-z]+"[a-z]+/ig).join().replace(/"/g,'\'');
+	 	console.log(str2);
+
+	 	//console.log(str.replace(/'/g,'"') && str.match(/[a-z]+"[a-z]+/ig).join().replace(/"/g,'\'')); // сокращенный вариант
+
+	 	// str2 = str2.replace(/"/g,'\'') // другой вариант - заменяет всё на апостроф
+
+	 	// let str4 = str.match(/([a-z]+)"([a-z]+)/ig).join().replace(/"/g,'$1\'$2'); // третий вариант - не работает
+	 	// console.log(str.match(regexp).join().replace(/"/g,'\'')); 
+	 	// console.log(str4);
+
+
+
+		// 3 задание	 
+	 let inputs = []; // для хранения значений введеных пользователем
+	 let regexpCheck = ['[a-zа-я]+', /^\+7\([0-9]{3}\)[0-9]{3}-[0-9]{4}$/, /^[a-z0-9.-]+@[a-z0-9._-]+\.[a-zа-я]{2,9}$/, /^[a-zа-я0-9-_!\?]+$/];
+	  document.querySelector(".submit-form").addEventListener('click',(event) => {
+	  	for(j = 0; j <= regexpCheck.length - 1; j++){
+	  		inputs.push(document.querySelector(`#input-${j+1}`).value); //добавить значения пользователя в массив
+	  	}
+	 		let checked = check(inputs,regexpCheck); // проверка на корректность значений
+	 		alert(!checked ? "Неправильно заполнено поле": "Все поля верны, можно отправлять");
+	 })
+
+	function check(value,regexpCheck){
+	 for(i = 0; i <= value.length -1; i++){
+	 	console.log(regexpCheck[i]);
+	 	let regexp = new RegExp(regexpCheck[i], 'igu');
+	 	if(regexp.test(value[i])){
+	 		let result = true;
+	 	}else{
+	 		let result = false; // если три последних ввода неверны, то функция перестает проверять и выдает ошибку(false) уже на первом неправильном значении
+	 		wrongInput([i+1]); //для подсвечивания неверного поля
+	 		return false;
+	 	}
+	 }
+	 return true;  //если все введеные значения верны, то возвращается true
+	}
+	 
+	 function wrongInput(item){  //для подсвечивания неверного поля
+	 	let d = document.querySelector(`#input-${item}`);
+	 	d.style.backgroundColor = "red";
+	 	
+	 }
+	 </script>
+</body>
+</html>

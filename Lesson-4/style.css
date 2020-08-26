@@ -1,0 +1,15 @@
+body{
+	display: flex;
+}
+form{
+	display: flex;
+	flex-direction: column;
+
+}
+#input-4{
+	width: 300px;
+	height: 150px;
+}
+input:focus{
+background-color: lightgrey;
+}
